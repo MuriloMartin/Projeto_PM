@@ -38,6 +38,8 @@ while userEnderApplication == False:
         case 5 :
             # Remover cliente
             print("Remover cliente")
+            cpf = get_user_cpf()
+            delete_clients(cpf,clients)
 
         case 6 :
             # Sair

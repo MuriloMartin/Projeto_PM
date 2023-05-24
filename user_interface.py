@@ -18,4 +18,49 @@ def get_user_name():
 def get_user_phone():
     return str(input('Digite o telefone do cliente: '))
 
-#teste
+def check_cpf(cpf):
+    '''Funcao que verifica se o CPF do cliente está no formato correto.'''
+    if (len(cpf) == 11):
+        for caractere in cpf:
+            if not caractere.isdigit():
+                print("CPF possui caracteres inválidos.")
+                return False
+        return True
+    else:
+        print("CPF possui tamanho inválido.")
+        return False
+
+
+from unidecode import unidecode
+
+def check_client_name(name):
+    '''Funcao que verifica se o nome do cliente está no formato correto.'''
+    sem_acentos = unidecode(name) #converte em um nome sem acentos
+    for c in name:
+        if c.isdigit():
+            print("O nome do cliente possui caracteres numéricos.")
+            return False
+        elif c.islower():
+            print("O nome do cliente possui letras minúsculas.")
+            return False
+        elif sem_acentos != name or not name.isalpha(): #se o caractere tiver acento ou caracter especial
+            print("O nome do cliente possui acentos e/ou caracteres especiais.")
+            return False
+    return True
+
+
+def check_client_tel(tel):
+    '''Funcao que checa se o telefone do cliente esta no formato correto (contando que todos os telefones tenham tamanho 9)'''
+    for c in tel:
+        if not c.isdigit():
+            print("O telefone do cliente possui caracteres não-numéricos.")
+            return False
+    if len(tel) != 9:
+        print("O tamanho do telefone do cliente está incompatível.")
+        return False
+    return True
+
+########### TESTES ############
+check_client_name("LUI/ZA FERREIRA CAMERINI")
+check_cpf('1254!796760')
+check_client_tel("98796921t")

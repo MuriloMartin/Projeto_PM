@@ -1,4 +1,5 @@
 def get_user_action():
+    '''Funcao que gerencia as acoes do usuario.'''
     print("\nQual ação você deseja realizar?")
     print('1 - Cadastrar ')
     print('2 - Fazer pedido - não implementado')
@@ -10,10 +11,15 @@ def get_user_action():
 
 
 def get_user_cpf():
-    return str(input('\nDigite o CPF do cliente: '))
+    '''Funcao que pega o CPF do usuario.'''
+    user_cpf = str(input('\nDigite o CPF do cliente: '))
+    while not check_cpf(user_cpf):
+        user_cpf = str(input('Digite o CPF do cliente: '))
+    return user_cpf
 
 
 def get_user_name():
+    '''Funcao que pega o nome do usuario.'''
     user_name = str(input('Digite o nome do cliente: '))
     while not check_client_name(user_name):
         user_name = str(input('Digite o nome do cliente: '))
@@ -21,11 +27,15 @@ def get_user_name():
 
 
 def get_user_phone():
-    return str(input('Digite o telefone do cliente: '))
+    '''Funcao que pega o telefone do usuario.'''
+    user_phone = str(input('Digite o telefone do cliente (lembre-se do 9 na frente): '))
+    while not check_client_phone(user_phone):
+        user_phone = str(input('Digite o telefone do cliente (lembre-se do 9 na frente): '))
+    return user_phone
 
 
 def check_cpf(cpf):
-    '''Funcao que verifica se o CPF do cliente está no formato correto.'''
+    '''Funcao que verifica se o CPF do usuario está no formato correto.'''
     if (len(cpf) == 11):
         for caractere in cpf:
             if not caractere.isdigit():
@@ -59,7 +69,7 @@ def check_cpf(cpf):
 
 
 def check_client_name(name):
-    '''Funcao que verifica se o nome do cliente está no formato correto.'''
+    '''Funcao que verifica se o nome do usuario está no formato correto.'''
     for c in name:
         c_ascii = ord(c)
         if c.isdigit():
@@ -71,13 +81,13 @@ def check_client_name(name):
     return True
 
 
-def check_client_tel(tel):
-    '''Funcao que checa se o telefone do cliente esta no formato correto (contando que todos os telefones tenham tamanho 9)'''
-    for c in tel:
+def check_client_phone(phone):
+    '''Funcao que checa se o telefone do usuario esta no formato correto (contando que todos os telefones tenham tamanho 9)'''
+    for c in phone:
         if not c.isdigit():
             print("O telefone do cliente possui caracteres não-numéricos.")
             return False
-    if len(tel) != 9:
+    if len(phone) != 9:
         print("O tamanho do telefone do cliente está incompatível.")
         return False
     return True
@@ -94,3 +104,5 @@ def check_client_tel(tel):
 # check_client_name_2("LUIZA 10 FERREIRA CAMERINI")
 # check_client_name_2("LUIZ@@ FERREIRA CAMERINI")
 # check_client_name_2("LUIZA FERREIRA CAMERINI")
+
+# get_user_cpf()

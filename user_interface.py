@@ -38,8 +38,7 @@ def check_cpf(cpf):
 
 
 # def check_client_name_2(name):
-#     #Funcao que verifica se o nome do cliente está no formato correto
-#     #ord(c) retorna o valor do caractere na tabela ASCII
+#     '''Funcao que verifica se o nome do cliente está no formato correto ord(c) retorna o valor do caractere na tabela ASCII'''
 
 #     isValid = all(ord(c) < 91 and ord(c) > 64 or ord(c)== 32 for c in name)
 #     if isValid:
@@ -63,7 +62,6 @@ def check_client_name(name):
     '''Funcao que verifica se o nome do cliente está no formato correto.'''
     for c in name:
         c_ascii = ord(c)
-        # print(c_ascii)
         if c.isdigit():
             print("O nome do cliente possui caracteres numéricos.")
             return False
@@ -85,9 +83,14 @@ def check_client_tel(tel):
     return True
 
 ########### TESTES ############
-check_client_name("LUIZA")
-check_client_name("LUIZA 10 FERREIRA CAMERINI")
-check_client_name("LUIZ@@ FERREIRA CAMERINI")
-check_client_name("LUIZA FERREIRA CAMERINI")
-check_cpf('1254!796760')
-check_client_tel("98796921t")
+# check_client_name("LUIZA")
+# check_client_name("LUIZA 10 FERREIRA CAMERINI")
+# check_client_name("LUIZ@@ FERREIRA CAMERINI")
+# check_client_name("LUIZA FERREIRA CAMERINÍ")
+# check_cpf('1254!796760')
+# check_client_tel("98796921t")
+# print(" ----------------- ")
+# check_client_name_2("LUIZA")
+# check_client_name_2("LUIZA 10 FERREIRA CAMERINI")
+# check_client_name_2("LUIZ@@ FERREIRA CAMERINI")
+# check_client_name_2("LUIZA FERREIRA CAMERINI")

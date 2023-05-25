@@ -17,3 +17,5 @@ def get_user_name():
 
 def get_user_phone():
     return str(input('Digite o telefone do cliente: '))
+
+#teste

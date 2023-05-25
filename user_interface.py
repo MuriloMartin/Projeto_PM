@@ -13,7 +13,10 @@ def get_user_cpf():
     return str(input('\nDigite o CPF do cliente: '))
 
 def get_user_name():
-    return str(input('Digite o nome do cliente: '))
+    user_name = str(input('Digite o nome do cliente: '))
+    while not check_client_name_2(user_name):
+        user_name = str(input('Digite o nome do cliente: '))
+    return user_name
 
 def get_user_phone():
     return str(input('Digite o telefone do cliente: '))
@@ -31,22 +34,44 @@ def check_cpf(cpf):
         return False
 
 
-from unidecode import unidecode
 
-def check_client_name(name):
-    '''Funcao que verifica se o nome do cliente está no formato correto.'''
-    sem_acentos = unidecode(name) #converte em um nome sem acentos
-    for c in name:
-        if c.isdigit():
-            print("O nome do cliente possui caracteres numéricos.")
-            return False
-        elif c.islower():
-            print("O nome do cliente possui letras minúsculas.")
-            return False
-        elif sem_acentos != name or not name.isalpha(): #se o caractere tiver acento ou caracter especial
-            print("O nome do cliente possui acentos e/ou caracteres especiais.")
-            return False
-    return True
+def check_client_name_2(name):
+    #Funcao que verifica se o nome do cliente está no formato correto
+    #ord(c) retorna o valor do caractere na tabela ASCII
+
+    isValid = all(ord(c) < 91 and ord(c) > 64 or ord(c)== 32 for c in name)
+    if isValid:
+        return True
+
+    hasLower = any(ord(c) >= 97 and ord(c) <= 122 for c in name)
+    if hasLower:
+        print("O nome do cliente possui letras minúsculas.")
+        return False
+    
+    hasNumeric = any(ord(c) >= 48 and ord(c) <= 57 for c in name)
+    if hasNumeric:
+        print("O nome do cliente possui caracteres numéricos.")
+        return False
+    
+    print("O nome do cliente possui acentos e/ou caracteres especiais.")
+    return False
+
+
+#from unidecode import unidecode
+# def check_client_name(name):
+#     '''Funcao que verifica se o nome do cliente está no formato correto.'''
+#     sem_acentos = unidecode(name) #converte em um nome sem acentos
+#     for c in name:
+#         if c.isdigit():
+#             print("O nome do cliente possui caracteres numéricos.")
+#             return False
+#         elif c.islower():
+#             print("O nome do cliente possui letras minúsculas.")
+#             return False
+#         elif sem_acentos != name or not name.isalpha(): #se o caractere tiver acento ou caracter especial
+#             print("O nome do cliente possui acentos e/ou caracteres especiais.")
+#             return False
+#     return True
 
 
 def check_client_tel(tel):
@@ -61,6 +86,9 @@ def check_client_tel(tel):
     return True
 
 ########### TESTES ############
-check_client_name("LUI/ZA FERREIRA CAMERINI")
+#check_client_name_2("LUIZA 10 FERREIRA CAMERINI")
+#check_client_name_2("LUiza FERREIRA CAMERINI")
+#check_client_name_2("LUIZ@@ FERREIRA CAMERINI")
+check_client_name_2("LUIZA FERREIRA CAMERINI")
 check_cpf('1254!796760')
 check_client_tel("98796921t")

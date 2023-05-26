@@ -1,8 +1,6 @@
 from user_interface import *
 from clients import *
 
-
-
 #####################################################
 clients = []
 balance = 0
@@ -17,8 +15,8 @@ while userEnderApplication == False:
 
     match user_action:
         case 1:
-            # Cadastro
-            cpf = get_user_cpf() #chamria dentro da função get_user_cpf a função que faz a checagem do cpf
+            # Cadastro de clientes
+            cpf = get_user_cpf()
             name = get_user_name()
             phone = get_user_phone()
             clients = register_clients(cpf, name, phone, clients)

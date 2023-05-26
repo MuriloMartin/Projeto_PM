@@ -1,5 +1,5 @@
 def get_user_action():
-    '''Funcao que gerencia as acoes do usuario.'''
+    '''Funcao que gerencia e mostra as acoes do usuario.'''
     print("\nQual ação você deseja realizar?")
     print('1 - Cadastrar ')
     print('2 - Fazer pedido - não implementado')

@@ -1,4 +1,3 @@
-
 def register_clients(cpf, name, phone, clients):
     client = {
         'cpf': cpf,

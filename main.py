@@ -48,3 +48,4 @@ while userEnderApplication == False:
     
     input('Press enter to continue...')
 
+print(clients)

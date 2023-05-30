@@ -7,8 +7,11 @@ def register_clients(cpf, name, phone, clients):
         'name': name,
         'phone': phone
     }
-    clients.append(client)
-    print('Cliente cadastrado com sucesso!')
+    if find_clients(client['cpf'],clients) == -1:
+        clients.append(client)
+        print('Cliente cadastrado com sucesso!')
+    else:
+        print("Cliente com CPF já cadastrado!")
     return clients
 
 def list_clients(clients):

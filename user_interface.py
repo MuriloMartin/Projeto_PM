@@ -47,38 +47,38 @@ def check_cpf(cpf):
         return False
 
 
-# def check_client_name_2(name):
-#     '''Funcao que verifica se o nome do cliente está no formato correto ord(c) retorna o valor do caractere na tabela ASCII'''
-
-#     isValid = all(ord(c) < 91 and ord(c) > 64 or ord(c)== 32 for c in name)
-#     if isValid:
-#         return True
-
-#     hasLower = any(ord(c) >= 97 and ord(c) <= 122 for c in name)
-#     if hasLower:
-#         print("O nome do cliente possui letras minúsculas.")
-#         return False
-    
-#     hasNumeric = any(ord(c) >= 48 and ord(c) <= 57 for c in name)
-#     if hasNumeric:
-#         print("O nome do cliente possui caracteres numéricos.")
-#         return False
-    
-#     print("O nome do cliente possui acentos e/ou caracteres especiais.")
-#     return False
-
-
 def check_client_name(name):
-    '''Funcao que verifica se o nome do usuario está no formato correto.'''
-    for c in name:
-        c_ascii = ord(c)
-        if c.isdigit():
-            print("O nome do cliente possui caracteres numéricos.")
-            return False
-        elif not (65 <= c_ascii <= 90 or c_ascii == 32): #32 eh o valor para o espaco em branco
-            print("O nome do cliente possui acentos, caracteres especiais ou letras minúsculas.")
-            return False
-    return True
+    '''Funcao que verifica se o nome do cliente está no formato correto ord(c) retorna o valor do caractere na tabela ASCII'''
+
+    isValid = all(ord(c) < 91 and ord(c) > 64 or ord(c)== 32 for c in name)
+    if isValid:
+        return True
+
+    hasLower = any(ord(c) >= 97 and ord(c) <= 122 for c in name)
+    if hasLower:
+        print("O nome do cliente deve ser escrito apenas em caracteres maiúsculos.")
+        return False
+    
+    hasNumeric = any(ord(c) >= 48 and ord(c) <= 57 for c in name)
+    if hasNumeric:
+        print("O nome do cliente não deve possuir caracteres numéricos.")
+        return False
+    
+    print("O nome do cliente não deve possuir acentos e/ou caracteres especiais.")
+    return False
+
+
+# def check_client_name(name):
+#     '''Funcao que verifica se o nome do usuario está no formato correto.'''
+#     for c in name:
+#         c_ascii = ord(c)
+#         if c.isdigit():
+#             print("O nome do cliente possui caracteres numéricos.")
+#             return False
+#         elif not (65 <= c_ascii <= 90 or c_ascii == 32): #32 eh o valor para o espaco em branco
+#             print("O nome do cliente possui acentos, caracteres especiais ou letras minúsculas.")
+#             return False
+#     return True
 
 
 def check_client_phone(phone):

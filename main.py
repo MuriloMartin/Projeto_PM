@@ -27,6 +27,8 @@ while userEnderApplication == False:
         case 2 :
             # Fazer pedido
             print("Fazer pedido")
+            list_games(stock)
+            num_game = get_game()
             
         case 3 :
             # Listar clientes

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <game>
+        <name>COUP</name>
+        <stock>3</stock>
+    </game>
+    <game>
+        <name>LOVE LETTER</name>
+        <stock>5</stock>
+    </game>
+    <game>
+        <name>DEAD OF WINTER</name>
+        <stock>2</stock>
+    </game>
+</root>

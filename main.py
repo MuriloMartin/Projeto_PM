@@ -1,8 +1,10 @@
 from user_interface import *
 from clients import *
+from orders import *
 
 #####################################################
-clients = []
+#Pega os dados do XML e traz par o dicionario:
+clients = read_clients([])
 balance = 0
 stock = {}
 orders_list = []
@@ -48,4 +50,4 @@ while userEnderApplication == False:
     
     input('Press enter to continue...')
 
-print(clients)
+# print(clients)

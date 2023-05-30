@@ -6,7 +6,8 @@ from orders import *
 #Pega os dados do XML e traz par o dicionario:
 clients = read_clients([])
 balance = 0
-stock = {}
+stock = read_games([])
+# print(stock)
 orders_list = []
 #####################################################
 

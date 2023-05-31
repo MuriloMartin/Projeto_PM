@@ -3,17 +3,21 @@
     <game>
         <name>COUP</name>
         <stock>3</stock>
+        <count>0</count>
     </game>
     <game>
         <name>LOVE LETTER</name>
         <stock>5</stock>
+        <count>0</count>
     </game>
     <game>
         <name>DEAD OF WINTER</name>
         <stock>2</stock>
+        <count>0</count>
     </game>
     <game>
         <name>STARDEW VALLEY</name>
         <stock>0</stock>
+        <count>0</count>
     </game>
 </root>

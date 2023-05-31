@@ -6,7 +6,8 @@ def get_user_action():
     print('3 - Listar clientes')
     print('4 - Buscar cliente')
     print('5 - Remover cliente')
-    print('6 - Sair\n')
+    print('6 - Listar jogos')
+    print('7 - Sair\n')
     return int(input('Digite o número correpondente à ação: '))
 
 
@@ -68,19 +69,6 @@ def check_client_name(name):
     return False
 
 
-# def check_client_name(name):
-#     '''Funcao que verifica se o nome do usuario está no formato correto.'''
-#     for c in name:
-#         c_ascii = ord(c)
-#         if c.isdigit():
-#             print("O nome do cliente possui caracteres numéricos.")
-#             return False
-#         elif not (65 <= c_ascii <= 90 or c_ascii == 32): #32 eh o valor para o espaco em branco
-#             print("O nome do cliente possui acentos, caracteres especiais ou letras minúsculas.")
-#             return False
-#     return True
-
-
 def check_client_phone(phone):
     '''Funcao que checa se o telefone do usuario esta no formato correto (contando que todos os telefones tenham tamanho 9)'''
     for c in phone:
@@ -108,18 +96,3 @@ def check_rent_type(rent_type):
     else:
         print("Tipo de aluguel inválido.")
         return False
-
-########### TESTES ############
-# check_client_name("LUIZA")
-# check_client_name("LUIZA 10 FERREIRA CAMERINI")
-# check_client_name("LUIZ@@ FERREIRA CAMERINI")
-# check_client_name("LUIZA FERREIRA CAMERINÍ")
-# check_cpf('1254!796760')
-# check_client_tel("98796921t")
-# print(" ----------------- ")
-# check_client_name_2("LUIZA")
-# check_client_name_2("LUIZA 10 FERREIRA CAMERINI")
-# check_client_name_2("LUIZ@@ FERREIRA CAMERINI")
-# check_client_name_2("LUIZA FERREIRA CAMERINI")
-
-# get_user_cpf()

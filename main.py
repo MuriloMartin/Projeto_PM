@@ -4,10 +4,11 @@ from orders import *
 
 #####################################################
 clients = read_clients([])
-balance = 0
 #stock eh onde ficam os dados dos jogos (nome e quantidade em estoque)
 stock = read_games([])
+#fazer um dicionario que faz a contagem de quantas vezes um jogo indisponivel foi pedido
 orders_list = []
+order_fornecedor = []
 #####################################################
 
 userEnderApplication = False
@@ -25,15 +26,11 @@ while userEnderApplication == False:
         
         case 2 :
             # Fazer pedido
-            # print("Fazer pedido")
             list_games(stock)
             num_game = get_game()
-            #identificar qual o cliente que está fazendo o pedido
-            cpf = get_user_cpf()
-            #monta o pedido em um dicionario
-            #order_list tem que ter cpf, nome do cliente, nome do jogo, tipo do aluguel, data de devolucao e data de aluguel
-            rent = get_rent_type()
-            orders_list = register_order(num_game, cpf, orders_list, stock, clients, rent)
+            check = check_game_stock(num_game, stock)
+            if check == 1:
+                orders_list = register_order(num_game, orders_list, stock, clients)
             
         case 3 :
             # Listar clientes
@@ -55,6 +52,10 @@ while userEnderApplication == False:
 
         case 6 :
             # Sair
+            # print("Saindo...")
+            list_games(stock)
+
+        case 7 :
            userEnderApplication = True
 
         case _  :

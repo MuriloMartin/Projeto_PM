@@ -7,7 +7,6 @@ clients = read_clients([])
 balance = 0
 #stock eh onde ficam os dados dos jogos (nome e quantidade em estoque)
 stock = read_games([])
-
 orders_list = []
 #####################################################
 
@@ -26,7 +25,7 @@ while userEnderApplication == False:
         
         case 2 :
             # Fazer pedido
-            print("Fazer pedido")
+            # print("Fazer pedido")
             list_games(stock)
             num_game = get_game()
             #identificar qual o cliente que está fazendo o pedido
@@ -50,7 +49,7 @@ while userEnderApplication == False:
         
         case 5 :
             # Remover cliente
-            print("Remover cliente")
+            # print("Remover cliente")
             cpf = get_user_cpf()
             delete_clients(cpf,clients)
 
@@ -59,7 +58,7 @@ while userEnderApplication == False:
            userEnderApplication = True
 
         case _  :
-            print('ação inválida')
+            print('Ação inválida. Tente novamente.')
     
     input('Press enter to continue...')
 

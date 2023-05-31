@@ -12,4 +12,8 @@
         <name>DEAD OF WINTER</name>
         <stock>2</stock>
     </game>
+    <game>
+        <name>STARDEW VALLEY</name>
+        <stock>0</stock>
+    </game>
 </root>

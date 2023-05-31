@@ -2,10 +2,10 @@ def get_user_action():
     '''Funcao que gerencia e mostra as acoes do usuario.'''
     print("\nQual ação você deseja realizar?")
     print('1 - Cadastrar')
-    print('2 - Fazer pedido - não implementado')
+    print('2 - Fazer pedido')
     print('3 - Listar clientes')
     print('4 - Buscar cliente')
-    print('5 - Remover cliente - não implementado')
+    print('5 - Remover cliente')
     print('6 - Sair\n')
     return int(input('Digite o número correpondente à ação: '))
 

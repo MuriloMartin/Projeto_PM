@@ -3,11 +3,11 @@ from clients import *
 from orders import *
 
 #####################################################
-#Pega os dados do XML e traz par o dicionario:
 clients = read_clients([])
 balance = 0
+#stock eh onde ficam os dados dos jogos (nome e quantidade em estoque)
 stock = read_games([])
-# print(stock)
+
 orders_list = []
 #####################################################
 
@@ -29,6 +29,12 @@ while userEnderApplication == False:
             print("Fazer pedido")
             list_games(stock)
             num_game = get_game()
+            #identificar qual o cliente que está fazendo o pedido
+            cpf = get_user_cpf()
+            #monta o pedido em um dicionario
+            #order_list tem que ter cpf, nome do cliente, nome do jogo, tipo do aluguel, data de devolucao e data de aluguel
+            rent = get_rent_type()
+            orders_list = register_order(num_game, cpf, orders_list, stock, clients, rent)
             
         case 3 :
             # Listar clientes
@@ -36,7 +42,11 @@ while userEnderApplication == False:
 
         case 4 :
             # Buscar cliente
-            print("Buscar cliente")
+            # print("Buscar cliente")
+            cpf = get_user_cpf()
+            index = find_client(cpf, clients)
+            if index > -1:
+                print_client(clients[index])
         
         case 5 :
             # Remover cliente
@@ -53,4 +63,4 @@ while userEnderApplication == False:
     
     input('Press enter to continue...')
 
-# print(clients)
+#escrever tudo em xml

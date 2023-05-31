@@ -1,12 +1,12 @@
 def get_user_action():
     '''Funcao que gerencia e mostra as acoes do usuario.'''
     print("\nQual ação você deseja realizar?")
-    print('1 - Cadastrar ')
+    print('1 - Cadastrar')
     print('2 - Fazer pedido - não implementado')
-    print('3 - Listar clientes ')
-    print('4 - Buscar cliente - não implementado')
+    print('3 - Listar clientes')
+    print('4 - Buscar cliente')
     print('5 - Remover cliente - não implementado')
-    print('6 - Sair \n')
+    print('6 - Sair\n')
     return int(input('Digite o número correpondente à ação: '))
 
 
@@ -91,6 +91,23 @@ def check_client_phone(phone):
         print("O tamanho do telefone do cliente está incompatível.")
         return False
     return True
+
+
+def get_rent_type():
+    '''Funcao que pega o tipo de aluguel do usuario.'''
+    rent_type = input('Digite o tipo de aluguel (diário (1) ou semanal (2)): ')
+    while not check_rent_type(rent_type):
+        rent_type = input('Digite o tipo de aluguel (diário (1) ou semanal (2)): ')
+    return int(rent_type)
+
+
+def check_rent_type(rent_type):
+    '''Funcao que verifica se o tipo de aluguel do usuario esta no formato correto.'''
+    if (rent_type == '1' or rent_type == '2'):
+        return True
+    else:
+        print("Tipo de aluguel inválido.")
+        return False
 
 ########### TESTES ############
 # check_client_name("LUIZA")

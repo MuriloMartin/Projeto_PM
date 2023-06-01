@@ -1,6 +1,5 @@
 import xml.etree.ElementTree as ET
 
-
 def register_clients(cpf, name, phone, clients):
     '''Funcao que registra os clientes no dicionario.'''
     client = {
@@ -12,7 +11,7 @@ def register_clients(cpf, name, phone, clients):
         clients.append(client)
         print('Cliente cadastrado com sucesso!')
     else:
-        print("Cliente com CPF já cadastrado!")
+        print("Cliente com CPF já cadastrado.")
     return clients
 
 

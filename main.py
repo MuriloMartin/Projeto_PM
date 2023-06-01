@@ -6,7 +6,6 @@ from orders import *
 clients = read_clients([])
 #stock eh onde ficam os dados dos jogos (nome e quantidade em estoque)
 stock = read_games([])
-#fazer um dicionario que faz a contagem de quantas vezes um jogo indisponivel foi pedido
 orders_list = []
 order_fornecedor = []
 #####################################################
@@ -18,7 +17,7 @@ while userEnderApplication == False:
 
     match user_action:
         case 1:
-            # Cadastro de clientes
+            # Cadastrar
             cpf = get_user_cpf()
             name = get_user_name()
             phone = get_user_phone()
@@ -31,6 +30,7 @@ while userEnderApplication == False:
             check = check_game_stock(num_game, stock)
             if check == 1:
                 orders_list = register_order(num_game, orders_list, stock, clients)
+                print(orders_list)
             
         case 3 :
             # Listar clientes
@@ -38,7 +38,6 @@ while userEnderApplication == False:
 
         case 4 :
             # Buscar cliente
-            # print("Buscar cliente")
             cpf = get_user_cpf()
             index = find_client(cpf, clients)
             if index > -1:
@@ -46,16 +45,15 @@ while userEnderApplication == False:
         
         case 5 :
             # Remover cliente
-            # print("Remover cliente")
             cpf = get_user_cpf()
             delete_clients(cpf,clients)
 
         case 6 :
-            # Sair
-            # print("Saindo...")
+            # Listar jogos
             list_games(stock)
 
         case 7 :
+           # Sair
            userEnderApplication = True
 
         case _  :

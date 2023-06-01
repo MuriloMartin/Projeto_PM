@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-
+    <order>
+        <cpf>12548796760</cpf>
+        <client_name>LUIZA CAMERINI</client_name>
+        <game_name>COUP</game_name>
+        <rent_type>DIARIO</rent_type>
+        <rent_date>01/06/2023 10:09</rent_date>
+        <return_date>02/06/2023 10:09</return_date>
+    </order>
 </root>

@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+from xml.dom import minidom
 
 #fazendo umas brincadeiras com arquivos xml
 # tree_orders=ET.parse('orders.xml')
@@ -52,7 +53,7 @@ def write_clients(clients):
     # tree_clients.write(formatted_xml, encoding='utf-8', xml_declaration=True)
 
     # PROBLEMA: escreve o arquivo em uma linha só
-    tree_clients.write('clients.xml', encoding='utf-8', xml_declaration=True)
+    # tree_clients.write('clients.xml', encoding='utf-8', xml_declaration=True)
 
 
 write_clients(clients)

@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from clients import *
 from user_interface import *
 
@@ -13,10 +13,10 @@ def register_order(num_game, orders_list, stock, clients):
         'cpf': cpf,
         'client_name': clients[find_client(cpf,clients)]['name'],
         'game_name': stock[num_game]['name'],
-        'rent_type': 'Diário' if rent_type == 1 else 'Semanal',
-        'rent_date': today,
-        'return_date':(date.today() + timedelta(days=1)).strftime("%d/%m/%Y") if rent_type == 1 
-        else (date.today() + timedelta(days=7)).strftime("%d/%m/%Y")
+        'rent_type': 'DIARIO' if rent_type == 1 else 'SEMANAL',
+        'rent_date': datetime.now().strftime("%d/%m/%Y %H:%M"),
+        'return_date':(datetime.now() + timedelta(days=1)).strftime("%d/%m/%Y %H:%M") if rent_type == 1 
+        else (datetime.now() + timedelta(days=7)).strftime("%d/%m/%Y %H:%M")
     }
     if find_order(order['cpf'],orders_list) == -1: #se o cliente ainda nao tem pedidos feitos
         if check_game_stock(num_game, stock) == 1: #se o jogo estiver em estoque
@@ -36,6 +36,7 @@ def check_game_stock(num_game, stock):
         return 0
     else: #se o jogo estiver em estoque
         return 1
+
 
 def count_order(count):
     '''Funcao que controla quantas vezes o jogo indisponivel foi pedido.'''
@@ -73,7 +74,7 @@ def list_games(games):
     '''Funcao que lista os jogos do dicionario.'''
     print('Listando jogos:\n')
     for i, game in enumerate(games):
-        print('(%d)' %(i))
+        print('JOGO (%d)' %(i))
         print('Nome:', game['name'])
         print('Quantidade em estoque:', game['stock'])
         print('Pedidos indisponíveis:',game['count'])

@@ -8,4 +8,12 @@
         <rent_date>01/06/2023 10:09</rent_date>
         <return_date>02/06/2023 10:09</return_date>
     </order>
+    <order>
+        <cpf>12345678998</cpf>
+        <client_name>ARTHUR LEITE</client_name>
+        <game_name>DEAD OF WINTER</game_name>
+        <rent_type>SEMANAL</rent_type>
+        <rent_date>01/06/2023 10:09</rent_date>
+        <return_date>08/06/2023 10:09</return_date>
+    </order>
 </root>

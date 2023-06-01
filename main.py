@@ -4,9 +4,9 @@ from orders import *
 
 #####################################################
 clients = read_clients([])
-#stock eh onde ficam os dados dos jogos (nome e quantidade em estoque)
 stock = read_games([])
-orders_list = []
+orders_list = read_orders()
+print(orders_list)
 order_fornecedor = []
 #####################################################
 
@@ -31,28 +31,33 @@ while userEnderApplication == False:
             if check == 1:
                 orders_list = register_order(num_game, orders_list, stock, clients)
                 print(orders_list)
+        
+        case 3:
+            #Procurar pedido
+            cpf = get_user_cpf()
+            find_order(cpf, orders_list)
             
-        case 3 :
+        case 4 :
             # Listar clientes
             list_clients(clients)
 
-        case 4 :
+        case 5 :
             # Buscar cliente
             cpf = get_user_cpf()
             index = find_client(cpf, clients)
             if index > -1:
                 print_client(clients[index])
         
-        case 5 :
+        case 6 :
             # Remover cliente
             cpf = get_user_cpf()
             delete_clients(cpf,clients)
 
-        case 6 :
+        case 7 :
             # Listar jogos
             list_games(stock)
 
-        case 7 :
+        case 8 :
            # Sair
            userEnderApplication = True
 

@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from datetime import date, timedelta, datetime
+from datetime import timedelta, datetime
 from clients import *
 from user_interface import *
 
@@ -7,8 +7,6 @@ def register_order(num_game, orders_list, stock, clients):
     '''Funcao que registra os pedidos no dicionario.'''
     cpf = get_user_cpf()
     rent_type = get_rent_type()
-    today = date.today()
-    today = today.strftime("%d/%m/%Y")
     order = {
         'cpf': cpf,
         'client_name': clients[find_client(cpf,clients)]['name'],
@@ -27,6 +25,22 @@ def register_order(num_game, orders_list, stock, clients):
         print("Cliente já possui pedido!")
     return orders_list
 
+
+#funcao que le o xml de orders e guarda no dicionario orders_list
+def read_orders():
+    '''Funcao que pega os dados do XML de pedidos e coloca no dicionario.'''
+    tree = ET.parse('orders.xml')
+    root = tree.getroot()
+    orders_list = []
+    for order in root.iter('order'):
+        order_cpf = order.find('cpf').text
+        order_client_name = order.find('client_name').text
+        order_game_name = order.find('game_name').text
+        order_rent_type = order.find('rent_type').text
+        order_rent_date = order.find('rent_date').text
+        order_return_date = order.find('return_date').text
+        orders_list.append({'cpf': order_cpf, 'client_name': order_client_name, 'game_name': order_game_name, 'rent_type': order_rent_type, 'rent_date': order_rent_date, 'return_date': order_return_date})
+    return orders_list
 
 def check_game_stock(num_game, stock):
     '''Funcao que verifica se o jogo esta em estoque e diminui a quantidade em estoque.'''
@@ -53,7 +67,7 @@ def find_order(cpf, orders_list):
     for order_index in range(len(orders_list)):
         if orders_list[order_index]['cpf'] == cpf:
             return order_index
-    # print("Nenhum pedido encontrado.")
+    print("Nenhum pedido registrado encontrado.")
     return -1
 
 

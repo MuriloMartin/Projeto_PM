@@ -3,11 +3,12 @@ def get_user_action():
     print("\nQual ação você deseja realizar?")
     print('1 - Cadastrar')
     print('2 - Fazer pedido')
-    print('3 - Listar clientes')
-    print('4 - Buscar cliente')
-    print('5 - Remover cliente')
-    print('6 - Listar jogos')
-    print('7 - Sair\n')
+    print('3 - Procurar pedido')
+    print('4 - Listar clientes')
+    print('5 - Buscar cliente')
+    print('6 - Remover cliente')
+    print('7 - Listar jogos')
+    print('8 - Sair\n')
     return int(input('Digite o número correpondente à ação: '))
 
 

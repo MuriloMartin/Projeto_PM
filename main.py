@@ -3,8 +3,8 @@ from clients import *
 from orders import *
 
 #####################################################
-clients = read_clients([])
-stock = read_games([])
+clients = read_clients()
+stock = read_games()
 orders_list = read_orders()
 print(orders_list)
 order_fornecedor = []

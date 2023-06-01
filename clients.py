@@ -35,6 +35,7 @@ def find_client(cpf, clients):
     '''Funcao que procura um cliente no dicionario.'''
     for client_index in range(len(clients)):
         if clients[client_index]['cpf'] == cpf:
+            print("Cliente encontrado.")
             return client_index
     print("Cliente não encontrado.")
     return -1
@@ -50,7 +51,7 @@ def delete_clients(cpf,clients):
     return 0
 
 
-def read_clients(clients):
+def read_clients():
     '''Funcao que pega os dados do XML de clientes e coloca no dicionario.'''
     tree = ET.parse('clients.xml')
     root = tree.getroot()

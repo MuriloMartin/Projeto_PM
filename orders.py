@@ -71,11 +71,11 @@ def find_order(cpf, orders_list):
     return -1
 
 
-def read_games(games):
+def read_games():
     '''Funcao que pega os dados do XML de jogos e coloca no dicionario.'''
     tree = ET.parse('games.xml')
     root = tree.getroot()
-    # games = []
+    games = []
     for game in root.iter('game'):
         game_name = game.find('name').text
         game_count = game.find('count').text

@@ -1,14 +1,17 @@
 from user_interface import *
 from clients import *
 from orders import *
+from file_handler import *
 
 #####################################################
 clients = read_clients()
-stock = read_games()
+stock = read_stock()
 orders_list = read_orders()
-print(orders_list)
 order_fornecedor = []
 #####################################################
+print('clientes', clients)
+print('\nestoque', stock)
+print('\npedidos', orders_list)
 
 userEnderApplication = False
 

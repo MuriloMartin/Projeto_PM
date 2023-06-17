@@ -51,14 +51,3 @@ def delete_clients(cpf,clients):
     return 0
 
 
-def read_clients():
-    '''Funcao que pega os dados do XML de clientes e coloca no dicionario.'''
-    tree = ET.parse('clients.xml')
-    root = tree.getroot()
-    clients = []
-    for client in root.iter('client'):
-        client_cpf = client.find('cpf').text
-        client_name = client.find('name').text
-        client_phone = client.find('phone').text
-        clients.append({'cpf': client_cpf, 'name': client_name, 'phone': client_phone})
-    return clients

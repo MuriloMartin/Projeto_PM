@@ -52,15 +52,16 @@ def read_orders():
     return orders_list
 
 
-def save_clientes(clients):
+def save_clients(clients):
+    '''Funcao que salva os dados do dicionario de clientes no XML.'''
     xml_string = dicttoxml(clients, return_bytes=False, item_func=lambda x: 'client')
     tree = ET.ElementTree(ET.fromstring(xml_string))
     tree.write('clients.xml', encoding='utf-8', xml_declaration=True)
     return
 
-def save_orders(clients):
-    xml_string = dicttoxml(clients, return_bytes=False, item_func=lambda x: 'client')
+def save_orders(orders):
+    '''Funcao que salva os dados do dicionario de pedidos no XML.'''
+    xml_string = dicttoxml(orders, return_bytes=False, item_func=lambda x: 'order')
     tree = ET.ElementTree(ET.fromstring(xml_string))
-    tree.write('clients.xml', encoding='utf-8', xml_declaration=True)
+    tree.write('orders.xml', encoding='utf-8', xml_declaration=True)
     return
-

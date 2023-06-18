@@ -6,6 +6,7 @@ from user_interface import *
 
 ################################ testes do clients.py ################################
 teste_clients = read_clients()
+save_clients(teste_clients)
 print("LISTA DE CLIENTES:")
 print(teste_clients)
 print("\n")
@@ -55,6 +56,7 @@ print("\n")
 print("REGISTRA CLIENTE EXISTENTE:")
 teste_clients = register_clients('12548796760', 'LUIZA CAMERINI', '987969219', teste_clients)
 print("\n")
+
 
 ################################ testes do orders.py ################################
 games = read_stock()

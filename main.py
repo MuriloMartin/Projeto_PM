@@ -70,3 +70,5 @@ while userEnderApplication == False:
     input('Press enter to continue...')
 
 #escrever tudo em xml
+save_clients(clients)
+save_orders(orders_list)

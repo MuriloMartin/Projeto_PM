@@ -71,11 +71,14 @@ def list_games(games):
         print('------------------------------------')
 
 
-def get_game():
+def get_game(games):
     '''Funcao que pega o jogo escolhido pelo usuario.'''
     num_game = input('Digite o numero do jogo que deseja alugar: ')
     while check_game_input(num_game) != 0:
         num_game = input('Digite o numero do jogo que deseja alugar: ')
+    if (num_game > str(len(games)-1)):
+        print("Jogo não encontrado.")
+        return -1
     return int(num_game)
 
 

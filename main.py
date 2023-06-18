@@ -29,7 +29,7 @@ while userEnderApplication == False:
         case 2 :
             # Fazer pedido
             list_games(stock)
-            num_game = get_game()
+            num_game = get_game(stock)
             check = check_game_stock(num_game, stock)
             if check == 1:
                 orders_list = register_order(num_game, orders_list, stock, clients)

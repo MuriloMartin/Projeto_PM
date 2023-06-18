@@ -57,7 +57,7 @@ teste_clients = register_clients('12548796760', 'LUIZA CAMERINI', '987969219', t
 print("\n")
 
 ################################ testes do orders.py ################################
-games = read_games()
+games = read_stock()
 games2=[]
 
 #teste de print de todos os jogos do dicionario

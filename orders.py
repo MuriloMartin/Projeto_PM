@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 from datetime import timedelta, datetime
 from clients import *
 from user_interface import *
+from random import randint
 
 def register_order(num_game, orders_list, stock, clients):
     '''Funcao que registra os pedidos no dicionario.'''
@@ -11,6 +12,7 @@ def register_order(num_game, orders_list, stock, clients):
         register_clients(cpf, get_user_name(), get_user_phone(), clients)
     rent_type = get_rent_type()
     order = {
+        'id' : get_valid_id(orders_list),
         'cpf': cpf,
         'client_name': clients[find_client(cpf,clients)]['name'],
         'game_name': stock[num_game]['name'],
@@ -28,9 +30,16 @@ def register_order(num_game, orders_list, stock, clients):
         print("Cliente já possui pedido!")
     return orders_list
 
+def get_valid_id(orders_list):
+    '''Funcao que gera um id valido para um pedido'''
+    id_valid = False
+    while(id_valid == False):
+        id_try = randint(0,999999)
+        if find_order(id_try,orders_list) == -1:
+            id_valid == True
+    return id_try
 
 #funcao que le o xml de orders e guarda no dicionario orders_list
-
 
 def check_game_stock(num_game, stock):
     '''Funcao que verifica se o jogo esta em estoque e diminui a quantidade em estoque.'''
@@ -56,10 +65,10 @@ def count_order(count, num_game, stock):
     return count
 
 
-def find_order(cpf, orders_list):
+def find_order(order_id, orders_list):
     '''Funcao que procura um pedido no dicionario.'''
     for order_index in range(len(orders_list)):
-        if orders_list[order_index]['cpf'] == cpf:
+        if orders_list[order_index]['id'] == order_id:
             return order_index
     print("Nenhum pedido registrado encontrado.")
     return -1

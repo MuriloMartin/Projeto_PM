@@ -41,8 +41,8 @@ while userEnderApplication == False:
         
         case 3:
             #Procurar pedido
-            cpf = get_user_cpf()
-            find_order(cpf, orders_list)
+            order_id = get_order_id()
+            find_order(order_id, orders_list)
             
         case 4 :
             # Listar clientes

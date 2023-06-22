@@ -2,8 +2,8 @@ from user_interface import *
 from clients import *
 from orders import *
 from file_handler import *
-global path
-path = r'C:\Users\Murilo\Desktop\Projetos\Projeto_PM\comunicacao'
+
+
 #####################################################
 clients = read_clients()
 stock = read_stock()

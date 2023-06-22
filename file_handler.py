@@ -4,6 +4,9 @@ from dicttoxml import dicttoxml
 import os.path
 import json
 
+global requerimentos_path 
+requerimentos_path = r'comunicacao\requerimento.json'
+
 def read_clients():
     '''Funcao que pega os dados do XML de clientes e coloca no dicionario.'''
     file_exists = os.path.isfile('clients.xml')
@@ -74,8 +77,8 @@ def save_stock(stock):
     tree.write('games.xml', encoding='utf-8', xml_declaration=True)
     return
 
-def create_request(num_game, stock,path):
-    f = open(r"C:\Users\Murilo\Desktop\Projetos\Projeto_PM\comunicacao\requerimento.json", "r")
+def create_request(num_game, stock):
+    f = open(requerimentos_path, "r")
     currentUnavailableGames = json.load(f)
     print(currentUnavailableGames)
     gameName = stock[num_game]['name']
@@ -84,9 +87,9 @@ def create_request(num_game, stock,path):
         return 
     currentUnavailableGames.append(gameName)
     jsnStr = json.dumps(currentUnavailableGames)
-    with open(r"C:\Users\Murilo\Desktop\Projetos\Projeto_PM\comunicacao\requerimento.json", "w") as outfile:
+    with open(requerimentos_path, "w") as outfile:
         outfile.write(jsnStr)
     return
 
 
-create_request(0, [{'name': 'COUP', 'stock': '3', 'count': '0'}, {'name': 'LOVE LETTER', 'stock': '5', 'count': '0'}, {'name': 'DEAD OF WINTER', 'stock': '2', 'count': '0'}, {'name': 'STARDEW VALLEY', 'stock': '0', 'count': '0'}],'')
+#create_request(0, [{'name': 'COUP', 'stock': '3', 'count': '0'}, {'name': 'LOVE LETTER', 'stock': '5', 'count': '0'}, {'name': 'DEAD OF WINTER', 'stock': '2', 'count': '0'}, {'name': 'STARDEW VALLEY', 'stock': '0', 'count': '0'}])

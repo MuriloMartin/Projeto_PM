@@ -100,5 +100,5 @@ def check_rent_type(rent_type):
 
 def get_order_id():
     '''Funcao que pega o id dado pelo usuario'''
-    order_id = int(input('\nDigite o id do seu pedido'))
+    order_id = int(input('\nDigite o id do seu pedido: '))
     return order_id

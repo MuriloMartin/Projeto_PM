@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <root>
-    <game>
-        <name>COUP</name>
-        <stock>3</stock>
-        <count>0</count>
+    <game type="dict">
+        <name type="str">COUP</name>
+        <stock type="str">0</stock>
+        <count type="str">0</count>
     </game>
-    <game>
-        <name>LOVE LETTER</name>
-        <stock>5</stock>
-        <count>0</count>
+    <game type="dict">
+        <name type="str">LOVE LETTER</name>
+        <stock type="str">3</stock>
+        <count type="str">0</count>
     </game>
-    <game>
-        <name>DEAD OF WINTER</name>
-        <stock>2</stock>
-        <count>0</count>
+    <game type="dict">
+        <name type="str">DEAD OF WINTER</name>
+        <stock type="str">3</stock>
+        <count type="str">0</count>
     </game>
-    <game>
-        <name>STARDEW VALLEY</name>
-        <stock>0</stock>
-        <count>0</count>
+    <game type="dict">
+        <name type="str">STARDEW VALLEY</name>
+        <stock type="str">3</stock>
+        <count type="str">0</count>
     </game>
 </root>

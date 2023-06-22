@@ -37,7 +37,6 @@ def find_client(cpf, clients):
         if clients[client_index]['cpf'] == cpf:
             print("Cliente encontrado.")
             return client_index
-    print("Cliente não encontrado.")
     return -1
 
 

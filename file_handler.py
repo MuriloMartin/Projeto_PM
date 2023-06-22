@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 from xml.dom import minidom
 from dicttoxml import dicttoxml
 import os.path
+import json
 
 def read_clients():
     '''Funcao que pega os dados do XML de clientes e coloca no dicionario.'''
@@ -65,3 +66,27 @@ def save_orders(orders):
     tree = ET.ElementTree(ET.fromstring(xml_string))
     tree.write('orders.xml', encoding='utf-8', xml_declaration=True)
     return
+
+def save_stock(stock):
+    '''Funcao que salva os dados do dicionario de jogos no XML.'''
+    xml_string = dicttoxml(stock, return_bytes=False, item_func=lambda x: 'game')
+    tree = ET.ElementTree(ET.fromstring(xml_string))
+    tree.write('games.xml', encoding='utf-8', xml_declaration=True)
+    return
+
+def create_request(num_game, stock,path):
+    f = open(r"C:\Users\Murilo\Desktop\Projetos\Projeto_PM\comunicacao\requerimento.json", "r")
+    currentUnavailableGames = json.load(f)
+    print(currentUnavailableGames)
+    gameName = stock[num_game]['name']
+    if gameName in currentUnavailableGames:
+        print("Jogo já está na lista de pedidos para o fornecedor. Ele estará disponível na proxima execução da aplicação")
+        return 
+    currentUnavailableGames.append(gameName)
+    jsnStr = json.dumps(currentUnavailableGames)
+    with open(r"C:\Users\Murilo\Desktop\Projetos\Projeto_PM\comunicacao\requerimento.json", "w") as outfile:
+        outfile.write(jsnStr)
+    return
+
+
+create_request(0, [{'name': 'COUP', 'stock': '3', 'count': '0'}, {'name': 'LOVE LETTER', 'stock': '5', 'count': '0'}, {'name': 'DEAD OF WINTER', 'stock': '2', 'count': '0'}, {'name': 'STARDEW VALLEY', 'stock': '0', 'count': '0'}],'')

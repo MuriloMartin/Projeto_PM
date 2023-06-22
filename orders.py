@@ -6,6 +6,9 @@ from user_interface import *
 def register_order(num_game, orders_list, stock, clients):
     '''Funcao que registra os pedidos no dicionario.'''
     cpf = get_user_cpf()
+    if find_client(cpf,clients) == -1:
+        print("Cliente ainda não cadastrado. Cadatre o cliente antes de fazer o pedido.")
+        register_clients(cpf, get_user_name(), get_user_phone(), clients)
     rent_type = get_rent_type()
     order = {
         'cpf': cpf,
@@ -33,18 +36,22 @@ def check_game_stock(num_game, stock):
     '''Funcao que verifica se o jogo esta em estoque e diminui a quantidade em estoque.'''
     if int(stock[num_game]['stock']) == 0: #se o jogo nao estiver em estoque
         print("O jogo nao está disponível em estoque.")
-        stock[num_game]['count'] = count_order(int(stock[num_game]['count']))
+        stock[num_game]['count'] = count_order(int(stock[num_game]['count']),num_game,stock)
         return 0
     else: #se o jogo estiver em estoque
         return 1
 
 
-def count_order(count):
+def count_order(count, num_game, stock):
     '''Funcao que controla quantas vezes o jogo indisponivel foi pedido.'''
     if count == 2:
+        #Gerar json com o formato {nome: 'nome do jogo'}
         print("Pedido para o fornecedor precisa ser enviado!")
+        create_request(num_game, stock)
+        
         count = 0
     else:
+
         count = count+1
     return count
 
@@ -74,6 +81,7 @@ def list_games(games):
 def get_game(games):
     '''Funcao que pega o jogo escolhido pelo usuario.'''
     num_game = input('Digite o numero do jogo que deseja alugar: ')
+    print('num_game', num_game)
     while check_game_input(num_game) != 0:
         num_game = input('Digite o numero do jogo que deseja alugar: ')
     if (num_game > str(len(games)-1)):

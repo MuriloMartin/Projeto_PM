@@ -2,18 +2,22 @@ from user_interface import *
 from clients import *
 from orders import *
 from file_handler import *
-
+global path
+path = r'C:\Users\Murilo\Desktop\Projetos\Projeto_PM\comunicacao'
 #####################################################
 clients = read_clients()
 stock = read_stock()
 orders_list = read_orders()
 order_fornecedor = []
+balance = 0
 #####################################################
 print('clientes', clients)
 print('\nestoque', stock)
 print('\npedidos', orders_list)
 
 userEnderApplication = False
+
+
 
 while userEnderApplication == False:
     user_action = get_user_action()
@@ -70,5 +74,7 @@ while userEnderApplication == False:
     input('Press enter to continue...')
 
 #escrever tudo em xml
+
 save_clients(clients)
 save_orders(orders_list)
+save_stock(stock)

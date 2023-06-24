@@ -20,7 +20,9 @@ def register_order(num_game, orders_list, stock, clients):
         'rent_type': 'DIARIO' if rent_type == 1 else 'SEMANAL',
         'rent_date': datetime.now().strftime("%d/%m/%Y %H:%M"),
         'return_date':(datetime.now() + timedelta(days=1)).strftime("%d/%m/%Y %H:%M") if rent_type == 1 
-        else (datetime.now() + timedelta(days=7)).strftime("%d/%m/%Y %H:%M")
+        else (datetime.now() + timedelta(days=7)).strftime("%d/%m/%Y %H:%M") ,
+        'value': 50 if rent_type == 1 else 50,
+        'status': 'PENDENTE'
     }
     if find_order(order['cpf'],orders_list) == -1: #se o cliente ainda nao tem pedidos feitos
         if check_game_stock(num_game, stock) == 1: #se o jogo estiver em estoque
@@ -31,10 +33,33 @@ def register_order(num_game, orders_list, stock, clients):
         print("Cliente já possui pedido!")
     return orders_list
 
+def return_order(order_id, orders_list, stock):
+    '''Funcao que registra a devolucao de pedidos no dicionario.'''
+    print('order_id',order_id)
+    print('orders_list',orders_list)
+    order_index = find_order(order_id,orders_list)
+    if(order_index == -1):
+        print("Pedido não encontrado.")
+        return orders_list
+    order = orders_list[order_index]
+    print('order',order)
+    if order['status'] == 'PENDENTE':
+        orders_list[order_index]['status'] = 'DEVOLVIDO'
+        print("Pedido devolvido com sucesso!")
+        for i in range(len(stock)):
+                    if stock[i]['name'] == order['game_name']:
+                        stock[i]['stock'] = int(stock[i]['stock']) + 1
+                        print("Devolução do jogo ", order['game_name'], " realizada com sucesso!")
+                        break
+        return orders_list
+    else:
+        print("Pedido já devolvido.")
+        return orders_list
+
 def get_valid_id(orders_list):
     '''Funcao que gera um id valido para um pedido'''
     while(1):
-        id_try = randint(0,999999)
+        id_try = randint(0,99)
         if find_order(id_try,orders_list) == -1:
             break
     return id_try
@@ -55,21 +80,20 @@ def count_order(count, num_game, stock):
     '''Funcao que controla quantas vezes o jogo indisponivel foi pedido.'''
     if count == 2:
         #Gerar json com o formato {nome: 'nome do jogo'}
-        print("Pedido para o fornecedor precisa ser enviado!")
         create_request(num_game, stock)
-        
+        print("Pedido para o fornecedor será enviado!")
         count = 0
     else:
 
         count = count+1
+
     return count
 
 
 def find_order(order_id, orders_list):
     '''Funcao que procura um pedido no dicionario.'''
     for order_index in range(len(orders_list)):
-        print(orders_list[order_index])
-        if orders_list[order_index]['order_id'] == order_id:
+        if orders_list[order_index]['order_id'] == str(order_id):
             return order_index
     #print("Nenhum pedido registrado encontrado.")
     return -1
@@ -89,7 +113,6 @@ def list_games(games):
 def get_game(games):
     '''Funcao que pega o jogo escolhido pelo usuario.'''
     num_game = input('Digite o numero do jogo que deseja alugar: ')
-    print('num_game', num_game)
     while check_game_input(num_game) != 0:
         num_game = input('Digite o numero do jogo que deseja alugar: ')
     if (num_game > str(len(games)-1)):

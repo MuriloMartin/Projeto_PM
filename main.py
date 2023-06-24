@@ -2,26 +2,23 @@ from user_interface import *
 from clients import *
 from orders import *
 from file_handler import *
-
+from balance import *
 
 #####################################################
 clients = read_clients()
 stock = read_stock()
 orders_list = read_orders()
-order_fornecedor = []
-balance = 0
+balance = read_balance()
+response = read_response()
+balance = handle_response(balance, response, stock)
+
 #####################################################
-print('clientes', clients)
-print('\nestoque', stock)
-print('\npedidos', orders_list)
 
+clear_request()
+clear_response()
 userEnderApplication = False
-
-
-
 while userEnderApplication == False:
     user_action = get_user_action()
-
     match user_action:
         case 1:
             # Cadastrar
@@ -37,34 +34,45 @@ while userEnderApplication == False:
             check = check_game_stock(num_game, stock)
             if check == 1:
                 orders_list = register_order(num_game, orders_list, stock, clients)
+                last_order_value = orders_list[-1]['value']
+                balance = increase_cash(balance, last_order_value)
                 print(orders_list)
+
+        case 3 :
+            # Devolver pedido
+            id = get_order_id()
+            orders_list = return_order(id, orders_list, stock)
         
-        case 3:
+        case 4:
             #Procurar pedido
             order_id = get_order_id()
             find_order(order_id, orders_list)
             
-        case 4 :
+        case 5 :
             # Listar clientes
             list_clients(clients)
 
-        case 5 :
+        case 6 :
             # Buscar cliente
             cpf = get_user_cpf()
             index = find_client(cpf, clients)
             if index > -1:
                 print_client(clients[index])
         
-        case 6 :
+        case 7 :
             # Remover cliente
             cpf = get_user_cpf()
             delete_clients(cpf,clients)
 
-        case 7 :
+        case 8 :
             # Listar jogos
             list_games(stock)
 
-        case 8 :
+        case 9 :
+            # Listar jogos
+            show_balance(balance)
+
+        case 10 :
            # Sair
            userEnderApplication = True
 
@@ -78,3 +86,4 @@ while userEnderApplication == False:
 save_clients(clients)
 save_orders(orders_list)
 save_stock(stock)
+save_balance(balance)

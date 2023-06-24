@@ -35,7 +35,7 @@ def find_client(cpf, clients):
     '''Funcao que procura um cliente no dicionario.'''
     for client_index in range(len(clients)):
         if clients[client_index]['cpf'] == cpf:
-            print("Cliente encontrado.")
+            #print("Cliente encontrado.")
             return client_index
     return -1
 

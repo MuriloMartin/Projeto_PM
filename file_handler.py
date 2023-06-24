@@ -4,8 +4,10 @@ from dicttoxml import dicttoxml
 import os.path
 import json
 
-global requerimentos_path 
+global requerimentos_path, resposta_path
 requerimentos_path = r'comunicacao\requerimento.json'
+resposta_path = r'comunicacao\resposta.json'
+preference_path = r'comunicacao\preferencia.json'
 
 def read_clients():
     '''Funcao que pega os dados do XML de clientes e coloca no dicionario.'''
@@ -46,13 +48,15 @@ def read_orders():
     root = tree.getroot()
     orders_list = []
     for order in root.iter('order'):
+        order_id = order.find('order_id').text
         order_cpf = order.find('cpf').text
         order_client_name = order.find('client_name').text
         order_game_name = order.find('game_name').text
         order_rent_type = order.find('rent_type').text
         order_rent_date = order.find('rent_date').text
         order_return_date = order.find('return_date').text
-        orders_list.append({'cpf': order_cpf, 'client_name': order_client_name, 'game_name': order_game_name, 'rent_type': order_rent_type, 'rent_date': order_rent_date, 'return_date': order_return_date})
+        order_status = order.find('status').text
+        orders_list.append({'order_id': order_id,'cpf': order_cpf, 'client_name': order_client_name, 'game_name': order_game_name, 'rent_type': order_rent_type, 'rent_date': order_rent_date, 'return_date': order_return_date, 'status': order_status})
     return orders_list
 
 
@@ -77,11 +81,28 @@ def save_stock(stock):
     tree.write('games.xml', encoding='utf-8', xml_declaration=True)
     return
 
+def save_balance(balance):
+    '''Funcao que salva os dados do dicionario de jogos no XML.'''
+    xml_string = dicttoxml({'caixa': balance}, return_bytes=False, item_func=lambda x: 'game')
+    tree = ET.ElementTree(ET.fromstring(xml_string))
+    tree.write('balance.xml', encoding='utf-8', xml_declaration=True)
+    return
+
+def read_balance():
+    '''Função que lê um arquivo xml contendo o caixa da loja'''
+    file_exists = os.path.isfile('balance.xml')
+    if file_exists == False:
+        return 0
+    tree = ET.parse('balance.xml')
+    root = tree.getroot()
+    balance = root.find('caixa').text
+    return float(balance)
+
 def create_request(num_game, stock):
     '''Funcao que cria um pedido de compra para o fornecedor.'''
     f = open(requerimentos_path, "r")
-    currentUnavailableGames = json.load(f)
-    print(currentUnavailableGames)
+    emptyFile = os.stat(requerimentos_path).st_size == 0
+    currentUnavailableGames = json.load(f) if not emptyFile else []
     gameName = stock[num_game]['name']
     if gameName in currentUnavailableGames:
         print("Jogo já está na lista de pedidos para o fornecedor. Ele estará disponível na proxima execução da aplicação")
@@ -92,5 +113,22 @@ def create_request(num_game, stock):
         outfile.write(jsnStr)
     return
 
+clear_request = lambda: open(requerimentos_path, "w").close()
 
-#create_request(0, [{'name': 'COUP', 'stock': '3', 'count': '0'}, {'name': 'LOVE LETTER', 'stock': '5', 'count': '0'}, {'name': 'DEAD OF WINTER', 'stock': '2', 'count': '0'}, {'name': 'STARDEW VALLEY', 'stock': '0', 'count': '0'}])
+def create_preference(gamesArray):
+    '''Funcao que cria um arquivo de preferencias para o fornecedor.'''
+    jsnStr = json.dumps(gamesArray)
+    with open(preference_path, "w") as outfile:
+        outfile.write(jsnStr)
+    return
+
+def read_response():
+    f = open(resposta_path, "r")
+    print(os.stat(requerimentos_path).st_size)
+    emptyFile = os.stat(requerimentos_path).st_size == 0
+    response = json.load(f) if not emptyFile else {}
+    return response
+
+clear_response = lambda: open(resposta_path, "w").close()
+
+save_balance(500)

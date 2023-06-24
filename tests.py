@@ -97,5 +97,22 @@ check_game_input('123')
 print("\n")
 
 ################################ testes do file_handler.py ################################
+lista_clientes = read_clients()
+print("LISTA LIDA DE CLIENTES:")
+print(lista_clientes)
+
+lista_jogos = read_stock()
+print("LISTA LIDA DE JOGOS:")
+print(lista_jogos)
+
+lista_pedidos = read_orders()
+print("LISTA LIDA DE PEDIDOS:")
+print(lista_pedidos)
+
+save_clients(lista_clientes)
+save_stock(lista_jogos)
+save_orders(lista_pedidos)
+
+create_request(0,lista_jogos)
 
 ################################ testes do user_interface.py ################################

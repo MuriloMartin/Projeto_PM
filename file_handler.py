@@ -78,6 +78,7 @@ def save_stock(stock):
     return
 
 def create_request(num_game, stock):
+    '''Funcao que cria um pedido de compra para o fornecedor.'''
     f = open(requerimentos_path, "r")
     currentUnavailableGames = json.load(f)
     print(currentUnavailableGames)

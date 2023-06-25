@@ -123,6 +123,9 @@ def create_preference(gamesArray):
     return
 
 def read_response():
+    file_exists = os.path.isfile(resposta_path)
+    if file_exists == False:
+        return {}
     f = open(resposta_path, "r")
     print(os.stat(requerimentos_path).st_size)
     emptyFile = os.stat(requerimentos_path).st_size == 0

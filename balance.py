@@ -17,6 +17,7 @@ def handle_response(balance, response, stock):
             if balance > game_cost:
                 print('')
                 balance = decrease_cash(balance, game_cost)
+                print("aaaaaaaaaa")
                 for i in range(len(stock)):
                     if stock[i]['name'] == game:
                         stock[i]['stock'] = int(stock[i]['stock']) + 1

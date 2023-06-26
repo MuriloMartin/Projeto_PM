@@ -35,8 +35,6 @@ def register_order(num_game, orders_list, stock, clients):
 
 def return_order(order_id, orders_list, stock):
     '''Funcao que registra a devolucao de pedidos no dicionario.'''
-    print('order_id',order_id)
-    print('orders_list',orders_list)
     order_index = find_order(order_id,orders_list)
     if(order_index == -1):
         print("Pedido não encontrado.")
@@ -95,7 +93,7 @@ def find_order(order_id, orders_list):
     for order_index in range(len(orders_list)):
         if orders_list[order_index]['order_id'] == str(order_id):
             return order_index
-    #print("Nenhum pedido registrado encontrado.")
+    print("Nenhum pedido registrado encontrado.")
     return -1
 
 

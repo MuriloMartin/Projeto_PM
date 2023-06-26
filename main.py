@@ -36,7 +36,6 @@ while userEnderApplication == False:
                 orders_list = register_order(num_game, orders_list, stock, clients)
                 last_order_value = orders_list[-1]['value']
                 balance = increase_cash(balance, last_order_value)
-                print(orders_list)
 
         case 3 :
             # Devolver pedido
@@ -46,8 +45,11 @@ while userEnderApplication == False:
         case 4:
             #Procurar pedido
             order_id = get_order_id()
-            find_order(order_id, orders_list)
-            
+            order_index = find_order(order_id, orders_list)
+            if order_index > -1:
+                print(orders_list[order_index])
+
+                
         case 5 :
             # Listar clientes
             list_clients(clients)

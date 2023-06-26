@@ -92,6 +92,7 @@ def save_stock(stock):
 
 def save_balance(balance):
     '''Funcao que salva os dados do dicionario de jogos no XML.'''
+    print('balance', balance)
     try:
         xml_string = dicttoxml({'caixa': balance}, return_bytes=False, item_func=lambda x: 'game')
         tree = ET.ElementTree(ET.fromstring(xml_string))
@@ -152,4 +153,3 @@ def read_response():
 
 clear_response = lambda: open(resposta_path, "w").close()
 
-save_balance(500)

@@ -3,6 +3,7 @@ from clients import *
 from orders import *
 from file_handler import *
 from user_interface import *
+from balance import *
 
 teste_clients = [
     {'cpf': '12548796760', 'name': 'LUIZA CAMERINI', 'phone': '987969219'},
@@ -188,6 +189,21 @@ print("\n")
 print("PRINTA VÁRIOS JOGOS DO DICIONARIO VAZIO:")
 print("Lista dos jogos: ")
 list_games(empty_games)
+print("\n")
+
+#testando função find_order
+print("TESTA FUNÇÃO FIND_ORDER ID EXISTENTE:")
+print("Procurando pedido com id 264398")
+print(test_orders[find_order('264398', test_orders)])
+print("\n")
+
+print("TESTA FUNÇÃO FIND_ORDER ID INEXISTENTE:")
+print("Procurando pedido com id 000000")
+find_order('000000', test_orders)
+print("\n")
+
+
+
 
 #teste de input apenas com letras
 print("JOGO APENAS COM LETRAS:")
@@ -355,3 +371,46 @@ print("TIPO DE ALUGUEL VÁLIDO")
 print('Testando o tipo de aluguel: 2')
 if check_rent_type('2'):
     print("Tipo de aluguel valido")
+print('\n')
+
+
+################################ testes do ballance.py ################################
+
+#testando o aumento do caixa
+print("AUMENTO DO CAIXA:")
+print("Testando o aumento do com um valor não numérico")
+increase_cash(100.0, 'a')
+print('\n')
+
+print("Testando o aumento do com um valor negativo")
+increase_cash(100.0, -1)
+print('\n')
+
+print("Testando o aumento do com um valor válido")
+print(increase_cash(100.0, 10))
+print('\n')
+
+#testando a diminuição do caixa
+
+print("DIMINUIÇÃO DO CAIXA:")
+print("Testando a diminuição do com um valor não numérico")
+decrease_cash(100.0, 'a')
+print('\n')
+
+print("Testando a diminuição do com um valor negativo")
+decrease_cash(100.0, -1)
+print('\n')
+
+print("Testando a diminuição do com um valor válido")
+print(decrease_cash(100.0, 10))
+print('\n')
+
+#testando o print do caixa
+
+print("PRINT DO CAIXA:")
+print("Testando o print do caixa com um valor não numérico")
+show_balance('a')
+print('\n')
+
+print("Testando o print do caixa com um valor válido")
+show_balance(100.0)

@@ -216,22 +216,6 @@ print("\n")
 
 ################################ testes do user_interface.py ################################
 
-#pegando a ação do usuario
-#get_user_action()
-print('\n')
-
-#pegando o cpf do usuario
-#get_user_cpf()
-print('\n')
-
-#pegando o nome do usuario
-#get_user_name()
-print('\n')
-
-#pegando o telefone do usuario
-#get_user_phone()
-print('\n')
-
 #checando o cpf do usuario
 print("CPF VÁLIDO: (APENAS COM NUMEROS)")
 print("Testando o cpf: 12548796760")
@@ -266,78 +250,108 @@ print('\n\n')
 
 #checando o nome do usuario
 print("NOME VAZIO:")
+print("Testando o nome: '' ")
 check_client_name('')
 print('\n')
 
 print("NOME APENAS COM NUMEROS:")
+print("Testando o nome: 1234567890")
 check_client_name('1234567890')
 print('\n')
 
 print("NOME COM NUMEROS:")
+print("Testando o nome: LUIZA123")
 check_client_name('LUIZA123')
 print('\n')
 
 print("NOME COM CARACTERES ESPECIAIS:")
+print("Testando o nome: LUIZA!!")
 check_client_name('LUIZA!!')
 print('\n')
 
 print("NOME COM LETRAS MINUSCULAS:")
+print("Testando o nome: luiza")
 check_client_name('luiza')
 print('\n')
 
 print("NOME VÁLIDO:")
-check_client_name('LUIZA')
+print("Testando o nome: LUIZA")
+if check_client_name('LUIZA'):
+    print("Nome valido")
 print('\n')
 
 #checando o telefone do usuario
 print("TELEFONE VAZIO:")
+print("Testando o telefone: '' ")
 check_client_phone('')
 print('\n')
 
 print("TELEFONE APENAS COM LETRAS:")
+print("Testando o telefone: bhjiujhgf")
 check_client_phone('bhjiujhgf')
 print('\n')
 
 print("TELEFONE COM CARACTERES ESPECIAIS:")
+print("Testando o telefone: 98796921!")
 check_client_phone('98796921!')
 print('\n')
 
 print("TELEFONE COM LETRAS E NUMEROS:")
+print("Testando o telefone: 98796921j0")
 check_client_phone('98796921j0')
 print('\n')
 
 print("TELEFONE MAIOR:")
+print("Testando o telefone: 987969219000")
 check_client_phone('987969219000')
 print('\n')
 
 print("TELEFONE MENOR:")
+print("Testando o telefone: 98796921")
 check_client_phone('98796921')
 print('\n')
 
 print("TELEFONE VÁLIDO:")
-check_client_phone('987969219')
+print("Testando o telefone: 987969219")
+if check_client_phone('987969219'):
+    print("Telefone valido")
 print('\n')
 
 #checando o tipo de aluguel
 print("TIPO DE ALUGUEL VAZIO:")
+print("Testando o tipo de aluguel: '' ")
 check_rent_type('')
 print('\n')
 
 print("TIPO DE ALUGUEL APENAS COM LETRAS:")
+print("Testando o tipo de aluguel: bhjiujhgf")
 check_rent_type('bhjiujhgf')
 print('\n')
 
 print("TIPO DE ALUGUEL COM CARACTERES ESPECIAIS:")
+print("Testando o tipo de aluguel: 98796921!")
 check_rent_type('98796921!')
 print('\n')
 
 print("TIPO DE ALUGUEL COM LETRAS E NUMEROS:")
+print("Testando o tipo de aluguel: 98796921j0")
 check_rent_type('98796921j0')
 print('\n')
 
-print("TIPO DE ALUGUEL VÁLIDO: (1)")
-check_rent_type('1')
+print("TIPO DE ALUGUEL NUMÉRICO INVALIDO:")
+print("Testando o tipo de aluguel: 3")
+check_rent_type('3')
 print('\n')
 
-print("TIPO DE ALUGUEL VÁLIDO: (2)")
-check_rent_type('2')
+
+print("TIPO DE ALUGUEL VALIDO")
+print('Testando o tipo de aluguel: 1')
+if check_rent_type('1'):
+    print("Tipo de aluguel valido")
+print('\n')
+
+
+print("TIPO DE ALUGUEL VÁLIDO")
+print('Testando o tipo de aluguel: 2')
+if check_rent_type('2'):
+    print("Tipo de aluguel valido")

@@ -57,6 +57,10 @@ def check_cpf(cpf):
 def check_client_name(name):
     '''Funcao que verifica se o nome do cliente está no formato correto ord(c) retorna o valor do caractere na tabela ASCII'''
 
+    if len(name) == 0:
+        print("O nome do cliente não deve ser vazio.")
+        return False
+    
     isValid = all(ord(c) < 91 and ord(c) > 64 or ord(c)== 32 for c in name)
     if isValid:
         return True

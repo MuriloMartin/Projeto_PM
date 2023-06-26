@@ -13,26 +13,32 @@ print("\n")
 
 #testando achar um cliente que ja existe
 print("CLIENTE EXISTE:")
-find_client('12548796760', teste_clients)
+print('Procurando cliente com cpf 12548796760')
+print(teste_clients[find_client('12548796760', teste_clients)])
 print("\n")
 
 #testando achar um cliente que nao existe
 print("CLIENTE NÃO EXISTE:")
-find_client('00000000000', teste_clients)
+print('Procurando cliente com cpf 00000000000')
+if (find_client('00000000000', teste_clients) == -1):
+    print("Cliente não encontrado, teste ok")
 print("\n")
 
 #printando um unico cliente
 print("PRINTA UM CLIENTE:")
+print('Printando o primeiro cliente no registro')
 print_client(teste_clients[0])
 print("\n")
 
 #printando a lista de clientes
 print("PRINTA VÁRIOS CLIENTES:")
+print('Printando a lista inteira de clientes')
 list_clients(teste_clients)
 print("\n")
 
 #deletando um cliente que existe
 print("DELETA CLIENTE QUE EXISTE:")
+print('Deletando cliente com cpf 12548796760')
 delete_clients('12548796760', teste_clients)
 print("NOVA LISTA DE CLIENTES:")
 print(teste_clients)
@@ -40,6 +46,7 @@ print("\n")
 
 #deletando um cliente que nao existe
 print("DELETA CLIENTE QUE NAO EXISTE:")
+print('Deletando cliente com cpf 78932145600')
 delete_clients('78932145600', teste_clients)
 print("NOVA LISTA DE CLIENTES:")
 print(teste_clients)
@@ -47,6 +54,7 @@ print("\n")
 
 #registrando um novo cliente
 print("REGISTRA NOVO CLIENTE:")
+print('Registrando cliente com cpf: 12548796760, nome: LUIZA CAMERINI, telefone: 987969219 ')
 teste_clients = register_clients('12548796760', 'LUIZA CAMERINI', '987969219', teste_clients)
 print("NOVA LISTA DE CLIENTES:")
 print(teste_clients)
@@ -54,11 +62,13 @@ print("\n")
 
 #registrando um cliente ja cadastrado
 print("REGISTRA CLIENTE EXISTENTE:")
+print('Registrando cliente com cpf: 12548796760, nome: LUIZA CAMERINI, telefone: 987969219 ')
 teste_clients = register_clients('12548796760', 'LUIZA CAMERINI', '987969219', teste_clients)
 print("\n")
 
 
 ################################ testes do orders.py ################################
+
 games = read_stock()
 games2=[]
 

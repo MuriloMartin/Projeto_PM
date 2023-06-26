@@ -62,56 +62,75 @@ def read_orders():
 
 def save_clients(clients):
     '''Funcao que salva os dados do dicionario de clientes no XML.'''
-    xml_string = dicttoxml(clients, return_bytes=False, item_func=lambda x: 'client')
-    tree = ET.ElementTree(ET.fromstring(xml_string))
-    tree.write('clients.xml', encoding='utf-8', xml_declaration=True)
-    return
+    try:
+        xml_string = dicttoxml(clients, return_bytes=False, item_func=lambda x: 'client')
+        tree = ET.ElementTree(ET.fromstring(xml_string))
+        tree.write('clients.xml', encoding='utf-8', xml_declaration=True)
+        return 0
+    except:
+        return -1
 
 def save_orders(orders):
     '''Funcao que salva os dados do dicionario de pedidos no XML.'''
-    xml_string = dicttoxml(orders, return_bytes=False, item_func=lambda x: 'order')
-    tree = ET.ElementTree(ET.fromstring(xml_string))
-    tree.write('orders.xml', encoding='utf-8', xml_declaration=True)
-    return
+    try:
+        xml_string = dicttoxml(orders, return_bytes=False, item_func=lambda x: 'order')
+        tree = ET.ElementTree(ET.fromstring(xml_string))
+        tree.write('orders.xml', encoding='utf-8', xml_declaration=True)
+        return 0
+    except:
+        return -1
 
 def save_stock(stock):
     '''Funcao que salva os dados do dicionario de jogos no XML.'''
-    xml_string = dicttoxml(stock, return_bytes=False, item_func=lambda x: 'game')
-    tree = ET.ElementTree(ET.fromstring(xml_string))
-    tree.write('games.xml', encoding='utf-8', xml_declaration=True)
-    return
+    try:
+        xml_string = dicttoxml(stock, return_bytes=False, item_func=lambda x: 'game')
+        tree = ET.ElementTree(ET.fromstring(xml_string))
+        tree.write('games.xml', encoding='utf-8', xml_declaration=True)
+        return 0
+    except:
+        return -1
 
 def save_balance(balance):
     '''Funcao que salva os dados do dicionario de jogos no XML.'''
-    xml_string = dicttoxml({'caixa': balance}, return_bytes=False, item_func=lambda x: 'game')
-    tree = ET.ElementTree(ET.fromstring(xml_string))
-    tree.write('balance.xml', encoding='utf-8', xml_declaration=True)
-    return
-
+    try:
+        xml_string = dicttoxml({'caixa': balance}, return_bytes=False, item_func=lambda x: 'game')
+        tree = ET.ElementTree(ET.fromstring(xml_string))
+        tree.write('balance.xml', encoding='utf-8', xml_declaration=True)
+        return 0
+    except:
+        return -1
+    
 def read_balance():
     '''Função que lê um arquivo xml contendo o caixa da loja'''
-    file_exists = os.path.isfile('balance.xml')
-    if file_exists == False:
-        return 0
-    tree = ET.parse('balance.xml')
-    root = tree.getroot()
-    balance = root.find('caixa').text
-    return float(balance)
+    try:
+        file_exists = os.path.isfile('balance.xml')
+        if file_exists == False:
+            return 0
+        tree = ET.parse('balance.xml')
+        root = tree.getroot()
+        balance = root.find('caixa').text
+        return float(balance)
+    except:
+        return -1
 
 def create_request(num_game, stock):
     '''Funcao que cria um pedido de compra para o fornecedor.'''
-    f = open(requerimentos_path, "r")
-    emptyFile = os.stat(requerimentos_path).st_size == 0
-    currentUnavailableGames = json.load(f) if not emptyFile else []
+    file_exists = os.path.isfile(resposta_path)
+    if file_exists == False:
+        currentUnavailableGames = []
+    else:
+        f = open(requerimentos_path, "r")
+        emptyFile = os.stat(requerimentos_path).st_size == 0
+        currentUnavailableGames = json.load(f) if not emptyFile else []
     gameName = stock[num_game]['name']
     if gameName in currentUnavailableGames:
         print("Jogo já está na lista de pedidos para o fornecedor. Ele estará disponível na proxima execução da aplicação")
-        return 
+        return 0 
     currentUnavailableGames.append(gameName)
     jsnStr = json.dumps(currentUnavailableGames)
     with open(requerimentos_path, "w") as outfile:
         outfile.write(jsnStr)
-    return
+    return 0 
 
 clear_request = lambda: open(requerimentos_path, "w").close()
 
@@ -127,8 +146,7 @@ def read_response():
     if file_exists == False:
         return {}
     f = open(resposta_path, "r")
-    print(os.stat(requerimentos_path).st_size)
-    emptyFile = os.stat(requerimentos_path).st_size == 0
+    emptyFile = os.stat(resposta_path).st_size == 0
     response = json.load(f) if not emptyFile else {}
     return response
 

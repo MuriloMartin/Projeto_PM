@@ -11,8 +11,11 @@ def get_user_action():
     print('8 - Listar jogos')
     print('9 - Mostrar saldo')
     print('10 - Sair\n')
-    return int(input('Digite o número correpondente à ação: '))
-
+    try:
+        return int(input('Digite o número correpondente à ação: '))
+    except:
+        print('Escreva um valor numerico')
+        return get_user_action()
 
 def get_user_cpf():
     '''Funcao que pega o CPF do usuario.'''

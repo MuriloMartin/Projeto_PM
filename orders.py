@@ -109,7 +109,6 @@ def list_games(games):
         print('Pedidos indisponíveis:',game['count'])
         print('------------------------------------')
 
-
 def get_game(games):
     '''Funcao que pega o jogo escolhido pelo usuario.'''
     num_game = input('Digite o numero do jogo que deseja alugar: ')
